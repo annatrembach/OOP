@@ -9,11 +9,9 @@ namespace OOP_3L
 {
     internal class UserRepository : IUserRepository
     {
-        IUserService userService;
         private readonly DbContext dbcontext;
         public UserRepository(DbContext dbcontext)
         {
-            userService = new UserService(dbcontext);
             this.dbcontext = dbcontext;
         }
         public void Create(UserEntity user)

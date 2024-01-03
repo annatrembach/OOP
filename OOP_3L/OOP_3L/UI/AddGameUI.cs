@@ -10,10 +10,12 @@ namespace OOP_3L
     {
         IGameService gameService;
         IUserService userService;
+        Random rndm;
         public AddGameUI(DbContext context)
         {
             gameService = new GameService(context);
             userService = new UserService(context);
+            rndm = new Random();
         }
         public string Action()
         {
@@ -60,18 +62,18 @@ namespace OOP_3L
             gameEntity.Rating = rating;
 
             //result
-            Console.WriteLine("Enter Result of the Game ");
-            GameResult gameResult;
-            string result = Console.ReadLine();
-            if (result[0] != '0' && result[0] != '1')
+            int result = rndm.Next(0, 2);
+            if (result != 0 && result != 1)
                 return "Invalid Result.";
-            if (result[0] == '1')
+            if (result == 1)
             {
                 gameEntity.Result = GameResult.Win;
+                Console.WriteLine($"User {firstuserid} {gameEntity.Result}");
             }
             else
             {
                 gameEntity.Result = GameResult.Lose;
+                Console.WriteLine($"User {firstuserid} {gameEntity.Result}");
             }
 
             //gameid
